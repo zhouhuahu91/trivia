@@ -5,9 +5,11 @@ import { gameStateReducer, initialGameState } from "./gameStateContext";
 const useGameStateProvider = () => {
   // When this renders we want to fetch the gamestate stored in local storage.
   const getInitialState = () => {
-    const storedGameState = localStorage.getItem("storedGameState1");
+    const storedGameState = localStorage.getItem("storedGameState");
     // If there is no gamestate we just return initial state
-    return storedGameState ? JSON.parse(storedGameState) : initialGameState;
+    return storedGameState
+      ? { ...initialGameState, players: JSON.parse(storedGameState).players }
+      : initialGameState;
   };
 
   const initialState = getInitialState();
