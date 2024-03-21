@@ -52,7 +52,7 @@ const Players = () => {
           </button>
         </div>
       </Modal>
-      <div className="flex max-w-screen-xl gap-4">
+      <div className="flex gap-4">
         <AnimatePresence>
           {players.map((player) => {
             return (
