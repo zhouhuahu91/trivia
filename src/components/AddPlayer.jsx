@@ -33,6 +33,9 @@ const AddPlayer = () => {
 
   return (
     <div className="flex flex-col gap-4 items-center">
+      <div className="text-7xl font-bold tracking-widest text-main my-10">
+        Trivia!
+      </div>
       <div>
         <h1 className="font-medium text-xl">Speler Toevoegen</h1>
       </div>

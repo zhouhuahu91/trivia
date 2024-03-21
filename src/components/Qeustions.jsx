@@ -8,7 +8,7 @@ const Questions = () => {
     dispatch,
   } = useGameState();
   const [currentQ, setCurrentQ] = useState(0);
-  const [showQ, setShowQ] = useState(true);
+  const [showQ, setShowQ] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(30);
   const [active, setActive] = useState(false);
@@ -29,7 +29,7 @@ const Questions = () => {
   };
 
   const reset = () => {
-    setShowQ(true);
+    setShowQ(false);
     setShowAnswer(false);
     setSecondsLeft(30);
     setActive(false);
