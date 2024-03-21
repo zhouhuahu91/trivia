@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useGameState } from "../context/gameStateContext";
+import Players from "./Players";
 
 const Questions = () => {
   const {
@@ -7,7 +8,7 @@ const Questions = () => {
     dispatch,
   } = useGameState();
   const [currentQ, setCurrentQ] = useState(0);
-  const [showQ, setShowQ] = useState(false);
+  const [showQ, setShowQ] = useState(true);
   const [showAnswer, setShowAnswer] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(30);
   const [active, setActive] = useState(false);
@@ -28,7 +29,7 @@ const Questions = () => {
   };
 
   const reset = () => {
-    setShowQ(false);
+    setShowQ(true);
     setShowAnswer(false);
     setSecondsLeft(30);
     setActive(false);
@@ -54,7 +55,7 @@ const Questions = () => {
   }, [secondsLeft, active]);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-20">
+    <div className="flex flex-col justify-center items-center gap-14">
       <div className="flex w-full justify-between items-center max-w-3xl min-w-60">
         <button
           onClick={() => {
@@ -82,6 +83,7 @@ const Questions = () => {
           arrow_forward
         </button>
       </div>
+      <Players />
       {questions.length > 9 && (
         <>
           <button
