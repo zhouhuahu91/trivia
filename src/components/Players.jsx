@@ -52,7 +52,7 @@ const Players = () => {
           </button>
         </div>
       </Modal>
-      <div className="grid grid-cols-12 max-w-screen-xl gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 place-items-center max-w-screen-xl gap-4">
         <AnimatePresence>
           {players.map((player) => {
             return (
@@ -61,7 +61,7 @@ const Players = () => {
                 animate={{ scale: 1, rotate: "0deg" }}
                 exit={{ scale: 0, rotate: "0deg" }}
                 key={player.name}
-                className="p-4 select-none col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2 border rounded-md shadow-lg font-medim flex flex-col items-center justify-center gap-4 min-w-48"
+                className="p-4 select-none border rounded-md shadow-lg font-medim flex flex-col items-center justify-center gap-4 min-w-48"
               >
                 <button
                   onClick={() => {
