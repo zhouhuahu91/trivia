@@ -23,10 +23,6 @@ export default {
           answer: "Arnhem",
         },
         {
-          question: "Welke Amerikaan regisseerde de film Pulp Fiction?",
-          answer: "Quentin Tarantino",
-        },
-        {
           question: "Van welke plant wordt Tequila gemaakt?",
           answer: "Agave",
         },

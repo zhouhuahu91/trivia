@@ -55,7 +55,10 @@ const AddPlayer = () => {
       </div>
       <div className="flex gap-2">
         <button
-          className="border shadow-xl font-medium rounded-md py-1.5 px-4 flex items-center justify-center w-40"
+          disabled={!input.length}
+          className={`border font-medium rounded-md py-1.5 px-4 flex items-center justify-center transition-shadow w-40 ${
+            input.length && "shadow-lg"
+          }`}
           onClick={() => {
             addPlayer();
           }}

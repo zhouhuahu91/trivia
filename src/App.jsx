@@ -5,6 +5,7 @@ import { useGameState } from "./context/gameStateContext";
 import AddPlayer from "./components/AddPlayer";
 import Players from "./components/Players";
 import Rounds from "./components/Rounds";
+import Questions from "./components/Qeustions";
 
 const App = () => {
   const {
@@ -15,7 +16,8 @@ const App = () => {
     <div className="w-full h-full flex flex-col justify-center items-center gap-32 mt-10">
       {phase === "lobby" && <AddPlayer />}
       {phase === "rounds" && <Rounds />}
-      <Players />
+      {phase !== "questions" && <Players />}
+      {phase === "questions" && <Questions />}
     </div>
   );
 };

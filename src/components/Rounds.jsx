@@ -16,7 +16,7 @@ const Rounds = () => {
         <span className="material-symbols-outlined">arrow_back</span>
         <span className="text-xl font-medium">Terug</span>
       </button>
-      <h1 className="max-w-5xl text-xl">
+      <h1 className="max-w-5xl text-xl text-center">
         Welkom op onze Trivia Avond, waar we jouw kennis testen in algemene
         kennis, sport, geschiedenis, muziek, film, en geografie.{" "}
         <span className="text-main font-bold">Zestig vragen</span>, één
@@ -26,6 +26,9 @@ const Rounds = () => {
         {gameState.trivia.rounds.map((round) => {
           return (
             <button
+              onClick={() =>
+                dispatch({ type: "SET_QUESTIONS", payload: round.questions })
+              }
               className="border py-4 px-6 min-w-32 rounded-md shadow-lg flex flex-col items-center justify-center gap-2"
               key={round.theme}
             >

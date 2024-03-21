@@ -9,12 +9,14 @@ export const useGameState = () => useContext(gameStateContext);
 // The game starts with lobby
 // start => you can add new players
 // lobby => when you press play you go to round selection
-// rounds => when round is selected we show the questions.
+// rounds => when round is selected we show the the rounds of the game.
+// questions => here we cicle through the selected round and give the questions.
 // after each round you go back to the lobby to select the new round and check the score.
 export const initialGameState = {
   players: [],
   trivia: trivia,
   phase: "lobby",
+  questions: [],
 };
 
 export const gameStateReducer = (state, action) => {
@@ -50,6 +52,12 @@ export const gameStateReducer = (state, action) => {
       return {
         ...state,
         phase: "lobby",
+      };
+    case "SET_QUESTIONS":
+      return {
+        ...state,
+        phase: "questions",
+        questions: action.payload,
       };
     default:
       return state;
