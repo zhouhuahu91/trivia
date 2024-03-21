@@ -39,7 +39,7 @@ const AddPlayer = () => {
       <div>
         <h1 className="font-medium text-xl">Speler Toevoegen</h1>
       </div>
-      <div className="w-96 relative flex mb-4">
+      <div className="w-[36rem] relative flex mb-4">
         <input
           value={input}
           onChange={(e) => {
