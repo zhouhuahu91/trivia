@@ -8,13 +8,13 @@ import Rounds from "./components/Rounds";
 
 const App = () => {
   const {
-    gameState: { status },
+    gameState: { phase },
   } = useGameState();
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center gap-32 mt-10">
-      {status === "lobby" && <AddPlayer />}
-      {status === "rounds" && <Rounds />}
+      {phase === "lobby" && <AddPlayer />}
+      {phase === "rounds" && <Rounds />}
       <Players />
     </div>
   );

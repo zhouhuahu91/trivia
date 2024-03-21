@@ -5,7 +5,7 @@ export const gameStateContext = createContext();
 
 export const useGameState = () => useContext(gameStateContext);
 
-// We have different statuses in the game
+// We have different phases in the game
 // The game starts with lobby
 // start => you can add new players
 // lobby => when you press play you go to round selection
@@ -14,7 +14,7 @@ export const useGameState = () => useContext(gameStateContext);
 export const initialGameState = {
   players: [],
   trivia: trivia,
-  status: "lobby",
+  phase: "lobby",
 };
 
 export const gameStateReducer = (state, action) => {
@@ -44,12 +44,12 @@ export const gameStateReducer = (state, action) => {
     case "GO_TO_ROUNDS":
       return {
         ...state,
-        status: "rounds",
+        phase: "rounds",
       };
     case "GO_TO_LOBBY":
       return {
         ...state,
-        status: "lobby",
+        phase: "lobby",
       };
     default:
       return state;
