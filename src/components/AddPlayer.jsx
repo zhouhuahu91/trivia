@@ -32,7 +32,7 @@ const AddPlayer = () => {
   };
 
   return (
-    <div className="flex flex-col mt-10 gap-4 items-center">
+    <div className="flex flex-col gap-4 items-center">
       <div>
         <h1 className="font-medium text-xl">Speler Toevoegen</h1>
       </div>
@@ -64,7 +64,7 @@ const AddPlayer = () => {
         </button>
         <button
           className="border shadow-xl font-medium bg-main rounded-md py-1.5 px-4 text-white flex items-center justify-center w-40"
-          onClick={() => console.log(input)}
+          onClick={() => dispatch({ type: "GO_TO_ROUNDS" })}
         >
           Start
           <span className="material-symbols-outlined ml-2 font-bold text-white">

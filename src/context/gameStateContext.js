@@ -1,10 +1,21 @@
 import { createContext, useContext } from "react";
+import trivia from "../assets/trivia_one";
 
 export const gameStateContext = createContext();
 
 export const useGameState = () => useContext(gameStateContext);
 
-export const initialGameState = { players: [] };
+// We have different statuses in the game
+// The game starts with lobby
+// start => you can add new players
+// lobby => when you press play you go to round selection
+// rounds => when round is selected we show the questions.
+// after each round you go back to the lobby to select the new round and check the score.
+export const initialGameState = {
+  players: [],
+  trivia: trivia,
+  status: "lobby",
+};
 
 export const gameStateReducer = (state, action) => {
   switch (action.type) {
@@ -29,6 +40,11 @@ export const gameStateReducer = (state, action) => {
       return {
         ...state,
         players: removePoint(state, action),
+      };
+    case "GO_TO_ROUNDS":
+      return {
+        ...state,
+        status: "rounds",
       };
     default:
       return state;

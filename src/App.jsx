@@ -6,13 +6,16 @@ import AddPlayer from "./components/AddPlayer";
 import Players from "./components/Players";
 
 const App = () => {
-  const { gameState } = useGameState();
+  const {
+    gameState: { status },
+  } = useGameState();
 
-  console.log(gameState);
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center gap-32">
-      <AddPlayer />
-      <Players />
+    <div className="w-full h-full flex flex-col justify-center items-center gap-32 mt-10">
+      {status === "lobby" && <AddPlayer />}
+      <div className="fixed bottom-10">
+        <Players />
+      </div>
     </div>
   );
 };
