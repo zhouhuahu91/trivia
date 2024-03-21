@@ -3,6 +3,7 @@ export default {
   rounds: [
     {
       theme: "algemene kennis",
+      icon: "school",
       questions: [
         {
           question:
@@ -52,6 +53,31 @@ export default {
           answer: "Miguel de Cervantes",
         },
       ],
+    },
+    {
+      theme: "sport",
+      icon: "directions_run",
+      questions: [],
+    },
+    {
+      theme: "geschiedenis",
+      icon: "account_balance",
+      questions: [],
+    },
+    {
+      theme: "muziek",
+      icon: "music_note",
+      questions: [],
+    },
+    {
+      theme: "films",
+      icon: "theaters",
+      questions: [],
+    },
+    {
+      theme: "geografie",
+      icon: "public",
+      questions: [],
     },
   ],
 };

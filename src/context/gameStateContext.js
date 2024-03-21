@@ -46,6 +46,11 @@ export const gameStateReducer = (state, action) => {
         ...state,
         status: "rounds",
       };
+    case "GO_TO_LOBBY":
+      return {
+        ...state,
+        status: "lobby",
+      };
     default:
       return state;
   }

@@ -48,7 +48,7 @@ const AddPlayer = () => {
           className="input"
         />
         {errors && (
-          <label className="absolute -bottom-4 text-xs text-red-500">
+          <label className="absolute -bottom-4 text-xs text-red-400">
             {errors}
           </label>
         )}
@@ -64,7 +64,12 @@ const AddPlayer = () => {
         </button>
         <button
           className="border shadow-xl font-medium bg-main rounded-md py-1.5 px-4 text-white flex items-center justify-center w-40"
-          onClick={() => dispatch({ type: "GO_TO_ROUNDS" })}
+          onClick={() => {
+            if (players.length < 2) {
+              return setErrors("Je hebt minimaal 2 spelers nodig.");
+            }
+            dispatch({ type: "GO_TO_ROUNDS" });
+          }}
         >
           Start
           <span className="material-symbols-outlined ml-2 font-bold text-white">
