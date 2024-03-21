@@ -14,7 +14,7 @@ const Rounds = () => {
         className="flex items-center gap-2"
       >
         <span className="material-symbols-outlined">arrow_back</span>
-        Terug
+        <span className="text-xl font-medium">Terug</span>
       </button>
       <h1 className="max-w-5xl text-xl">
         Welkom op onze Trivia Avond, waar we jouw kennis testen in algemene
