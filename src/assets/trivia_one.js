@@ -301,7 +301,21 @@ export default {
   final: {
     questions: [
       {
-        title: "Spotify",
+        question: `Wat zijn de meest waardevolle type edelstenen ter wereld?`,
+        answers: ["Diamant", "Robijn", "Smaragd", "Topaas", "Saffier"],
+      },
+      {
+        question: `Welke fastfoodketens hebben wereldwijd het meeste restaurants?`,
+        answers: [
+          "McDonald's",
+          "Subway",
+          "KFC",
+          "Burger King",
+          "Domino's",
+          "Pizza Hut",
+        ],
+      },
+      {
         question: `Wie waren op Spotify wereldwijd de meest gestreamde artiesten van het tweede decennium van deze eeuw (dus de 2010s of de "twenty-tens")?`,
         answers: [
           "Drake",
@@ -312,7 +326,18 @@ export default {
         ],
       },
       {
-        title: "Schotland",
+        question:
+          "Wat kan je allemaal vertellen over zanger en tieneridool Justin Bieber?",
+        answers: [
+          "Canadees",
+          "YouTube",
+          "Baby",
+          "Sorry",
+          "Hailey Baldwin",
+          "Ziekte van Lyme",
+        ],
+      },
+      {
         question: `Je kent Schotland onder meer van de "Whisky", de "Haggis" en "Loch Ness", maar wat zoeken we NOG over Schotland en haar cultuur?`,
         answers: [
           "Edinburgh",
