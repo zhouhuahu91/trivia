@@ -7,6 +7,7 @@ const Finals = () => {
     gameState: { finalists },
     dispatch,
   } = useGameState();
+  const [turn, setTurn] = useState(false);
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -32,19 +33,37 @@ const Finals = () => {
       </button>
       {finalists.length === 2 && showFinalists && (
         <div className="flex gap-40 items-center">
-          <div className="capitalize border p-8 rounded-md shadow-lg w-60 flex flex-col items-center justify-center gap-6">
-            <div className="text-lg font-medium">{finalists[0].name}</div>
-            <div className="text-5xl font-medium font-mono">
+          <button
+            onClick={() => {
+              setTurn(0);
+            }}
+            className={`capitalize border p-8 rounded-lg w-60 flex flex-col items-center justify-center gap-6 ${
+              turn === 0 ? "text-main shadow-inner bg-neutral-50" : "shadow-xl"
+            }`}
+          >
+            <span className="text-lg font-medium text-inherit">
+              {finalists[0].name}
+            </span>
+            <span className="text-7xl font-medium font-mono text-inherit">
               {finalists[0].score}
-            </div>
-          </div>
+            </span>
+          </button>
           <span className="italic text-3xl">VS</span>
-          <div className="capitalize border p-8 rounded-md shadow-lg w-60 flex flex-col items-center justify-center gap-6">
-            <div className="text-lg font-medium">{finalists[1].name}</div>
-            <div className="text-5xl font-medium font-mono">
+          <button
+            onClick={() => {
+              setTurn(1);
+            }}
+            className={`capitalize border p-8 rounded-lg w-60 flex flex-col items-center justify-center gap-6 ${
+              turn === 1 ? "text-main shadow-inner bg-neutral-50" : "shadow-xl"
+            }`}
+          >
+            <span className="text-xl font-medium text-inherit">
+              {finalists[1].name}
+            </span>
+            <span className="text-7xl font-medium font-mono text-inherit">
               {finalists[1].score}
-            </div>
-          </div>
+            </span>
+          </button>
         </div>
       )}
     </div>
