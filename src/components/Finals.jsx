@@ -14,6 +14,9 @@ const Finals = () => {
   const [answers, setAnswers] = useState([]);
   const [bothHadATurn, setBothHadATurn] = useState(false);
 
+  const answeredAll =
+    answers.length === final.questions[currentQ].answers.length;
+
   const reset = () => {
     setTurn(false);
     setShowQ(false);
@@ -176,11 +179,11 @@ const Finals = () => {
             }}
             className="flex items-center border p-2 rounded-md gap-2 bg-red-400 text-white w-40 justify-center"
           >
-            {bothHadATurn ? "Stop" : "Pas"}
+            Pas
             <span className="material-symbols-outlined text-white">timer</span>
           </button>
         )}
-        {turn === false && !bothHadATurn && (
+        {turn === false && !bothHadATurn && !answeredAll && (
           <button
             onClick={() => {
               if (!showQ) {
@@ -196,11 +199,11 @@ const Finals = () => {
           >
             {showQ ? "Start" : "Vraag"}
             <span className="material-symbols-outlined text-white">
-              {showQ ? "timer" : ""}
+              {showQ ? "timer" : "visibility"}
             </span>
           </button>
         )}
-        {bothHadATurn && turn === false && (
+        {(bothHadATurn || answeredAll) && turn === false && (
           <button
             onClick={() => {
               if (currentQ + 1 === final.questions.length) {
