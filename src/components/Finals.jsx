@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useGameState } from "../context/gameStateContext";
 
 const Finals = () => {
+  const { gameState, dispatch } = useGameState();
   const {
-    gameState: { finalists, trivia },
-    dispatch,
-  } = useGameState();
+    finalistOne,
+    finalistTwo,
+    trivia: { final },
+  } = gameState;
   const [turn, setTurn] = useState(false);
   const [showQ, setShowQ] = useState(false);
   const [currentQ, setCurrentQ] = useState(0);
@@ -20,20 +22,32 @@ const Finals = () => {
   };
 
   useEffect(() => {
+    if (finalistOne === null || finalistTwo === null) {
+      dispatch({ type: "GET_FINALISTS" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     let interval = null;
-    const scoreMoreThanZero = finalists.every((player) => player.score > 0);
+
     if (
       turn !== false &&
-      finalists.length > 1 &&
       // If all answers are shown we stop the time.
-      answers.length < trivia.final.questions[currentQ].answers.length &&
-      scoreMoreThanZero
+      answers.length < final.questions[currentQ].answers.length &&
+      finalistOne.score > 0 &&
+      finalistTwo.score > 0
     ) {
       interval = setInterval(() => {
-        dispatch({
-          type: "REMOVE_POINT_FINALIST",
-          payload: finalists[turn].name,
-        });
+        if (turn === 0) {
+          dispatch({
+            type: "REMOVE_POINT_FINALIST_ONE",
+          });
+        } else if (turn === 1) {
+          dispatch({
+            type: "REMOVE_POINT_FINALIST_TWO",
+          });
+        }
       }, 1000);
     } else {
       setTurn(false);
@@ -41,7 +55,7 @@ const Finals = () => {
     }
 
     return () => clearInterval(interval);
-  }, [turn, finalists, answers, trivia, currentQ]);
+  }, [turn, answers, final, currentQ, dispatch, finalistOne, finalistTwo]);
 
   return (
     <div className="flex flex-col items-center justify-center gap-10">
@@ -64,7 +78,7 @@ const Finals = () => {
       >
         FINALE!
       </button>
-      {finalists.length === 2 && (
+      {finalistOne !== null && finalistTwo !== null && (
         <div className="flex gap-40 items-center">
           <button
             disabled={!showQ}
@@ -76,10 +90,10 @@ const Finals = () => {
             }`}
           >
             <span className="text-lg font-medium text-inherit">
-              {finalists[0].name}
+              {finalistOne.name}
             </span>
             <span className="text-7xl font-medium font-mono text-inherit">
-              {finalists[0].score}
+              {finalistOne.score}
             </span>
           </button>
           <span className="italic text-3xl">VS</span>
@@ -93,10 +107,10 @@ const Finals = () => {
             }`}
           >
             <span className="text-xl font-medium text-inherit">
-              {finalists[1].name}
+              {finalistTwo.name}
             </span>
             <span className="text-7xl font-medium font-mono text-inherit">
-              {finalists[1].score}
+              {finalistTwo.score}
             </span>
           </button>
         </div>
@@ -109,10 +123,10 @@ const Finals = () => {
           !showQ && "blur-lg"
         }`}
       >
-        {trivia.final.questions[currentQ].question}
+        {final.questions[currentQ].question}
       </button>
       <div className="flex gap-20 mt-10">
-        {trivia.final.questions[currentQ].answers.map((answer) => {
+        {final.questions[currentQ].answers.map((answer) => {
           return (
             <button
               disabled={
@@ -122,10 +136,17 @@ const Finals = () => {
                 if (answers.includes(answer)) return;
                 setAnswers((prev) => [...prev, answer]);
                 for (let i = 0; i < 20; i++) {
-                  dispatch({
-                    type: "REMOVE_POINT_FINALIST",
-                    payload: turn === 0 ? finalists[1].name : finalists[0].name,
-                  });
+                  setTimeout(() => {
+                    if (turn === 0) {
+                      dispatch({
+                        type: "REMOVE_POINT_FINALIST_TWO",
+                      });
+                    } else if (turn === 1) {
+                      dispatch({
+                        type: "REMOVE_POINT_FINALIST_ONE",
+                      });
+                    }
+                  }, 5 * i);
                 }
               }}
               className={`text-2xl ${!answers.includes(answer) && "blur"}`}
@@ -137,7 +158,7 @@ const Finals = () => {
         })}
       </div>
       <div className="flex gap-4">
-        {turn !== false ? (
+        {turn !== false && (
           <button
             onClick={() => {
               if (bothHadATurn === false) {
@@ -158,40 +179,45 @@ const Finals = () => {
             {bothHadATurn ? "Stop" : "Pas"}
             <span className="material-symbols-outlined text-white">timer</span>
           </button>
-        ) : (
+        )}
+        {turn === false && !bothHadATurn && (
           <button
-            disabled={!showQ}
             onClick={() => {
-              const player1 = finalists[0].score;
-              const player2 = finalists[1].score;
-              if (player1.score > player2.score) {
-                setTurn(0);
-              } else {
+              if (!showQ) {
+                return setShowQ(true);
+              }
+              if (finalistOne.score > finalistTwo.score) {
                 setTurn(1);
+              } else {
+                setTurn(0);
               }
             }}
-            className="flex items-center border p-2 rounded-md gap-2 bg-red-400 text-white w-40 justify-center"
+            className="flex items-center border p-2 rounded-md gap-2 bg-main text-white w-40 justify-center"
           >
-            Start
-            <span className="material-symbols-outlined text-white">timer</span>
+            {showQ ? "Start" : "Vraag"}
+            <span className="material-symbols-outlined text-white">
+              {showQ ? "timer" : ""}
+            </span>
           </button>
         )}
-        <button
-          onClick={() => {
-            if (currentQ + 1 === trivia.final.questions.length) {
+        {bothHadATurn && turn === false && (
+          <button
+            onClick={() => {
+              if (currentQ + 1 === final.questions.length) {
+                reset();
+                return setCurrentQ(0);
+              }
+              setCurrentQ((prev) => prev + 1);
               reset();
-              return setCurrentQ(0);
-            }
-            setCurrentQ((prev) => prev + 1);
-            reset();
-          }}
-          className="border p-2 flex items-center rounded-md shadow-xl gap-2 text-white bg-main w-40 justify-center"
-        >
-          Volgende
-          <span className="material-symbols-outlined text-white">
-            arrow_forward
-          </span>
-        </button>
+            }}
+            className="border p-2 flex items-center rounded-md shadow-xl bg-main text-white gap-2 w-40 justify-center"
+          >
+            Volgende
+            <span className="material-symbols-outlined text-white">
+              arrow_forward
+            </span>
+          </button>
+        )}
       </div>
     </div>
   );

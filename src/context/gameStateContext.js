@@ -18,6 +18,8 @@ export const initialGameState = {
   phase: "lobby",
   questions: [],
   finalists: [],
+  finalistOne: null,
+  finalistTwo: null,
 };
 
 export const gameStateReducer = (state, action) => {
@@ -44,11 +46,22 @@ export const gameStateReducer = (state, action) => {
         ...state,
         players: removePoint(state, action),
       };
-
-    case "REMOVE_POINT_FINALIST":
+    case "REMOVE_POINT_FINALIST_ONE":
       return {
         ...state,
-        finalists: removePointFinalist(state, action),
+        finalistOne: {
+          ...state.finalistOne,
+          score: state.finalistOne.score - 1,
+        },
+      };
+    case "REMOVE_POINT_FINALIST_TWO":
+      return {
+        ...state,
+        ...state,
+        finalistTwo: {
+          ...state.finalistOne,
+          score: state.finalistTwo.score - 1,
+        },
       };
     case "GO_TO_ROUNDS":
       return {
@@ -74,7 +87,8 @@ export const gameStateReducer = (state, action) => {
     case "GET_FINALISTS":
       return {
         ...state,
-        finalists: getFinalists(state),
+        finalistOne: getFinalist(state, 0),
+        finalistTwo: getFinalist(state, 1),
       };
     default:
       return state;
@@ -103,29 +117,8 @@ const removePoint = (state, action) => {
   });
 };
 
-const getFinalists = (state) => {
+const getFinalist = (state, i) => {
   const x = [...state.players];
   x.sort((a, b) => b.score - a.score);
-  return x
-    .slice(0, 2)
-    .map((player) => ({ ...player, score: player.score * 10 }));
-};
-
-const countDown = (state, action) => {
-  return state.finalists.map((player) =>
-    player.name === action.payload
-      ? { ...player, score: player.score - 1 }
-      : player
-  );
-};
-
-const removePointFinalist = (state, action) => {
-  return state.finalists.map((player) => {
-    return player.name === action.payload
-      ? {
-          ...player,
-          score: player.score === 0 ? 0 : player.score - 1,
-        }
-      : player;
-  });
+  return { ...x[i], score: x[i].score * 10 };
 };
