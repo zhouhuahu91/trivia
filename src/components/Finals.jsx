@@ -58,15 +58,32 @@ const Finals = () => {
     } else {
       stopAudio();
     }
+
+    return () => {
+      stopAudio();
+    };
   }, [turn]);
+
+  const startWinnerAudio = () => {
+    if (winnerAudio.current) {
+      winnerAudio.current.loop = true;
+      winnerAudio.current.play();
+    }
+  };
+
+  const stopWinnerAudio = () => {
+    if (winnerAudio.current) {
+      winnerAudio.current.pause();
+      winnerAudio.current.currentTime = 0; // Reset the audio to the start
+    }
+  };
 
   useEffect(() => {
     if (finalistOne?.score === 0 || finalistTwo?.score === 0) {
-      if (winnerAudio.current) {
-        winnerAudio.current.loop = true;
-        winnerAudio.current.play();
-      }
+      startWinnerAudio();
     }
+
+    return () => stopWinnerAudio();
   }, [finalistOne, finalistTwo]);
 
   useEffect(() => {
