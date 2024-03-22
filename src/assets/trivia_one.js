@@ -301,8 +301,27 @@ export default {
   final: {
     questions: [
       {
-        question: "",
-        answers: [],
+        title: "Spotify",
+        question: `Wie waren op Spotify wereldwijd de meest gestreamde artiesten van het tweede decennium van deze eeuw (dus de 2010s of de "twenty-tens")?`,
+        answers: [
+          "Drake",
+          "Ed Sheeran",
+          "Post Malone",
+          "Ariana Grande",
+          "Eminem",
+        ],
+      },
+      {
+        title: "Schotland",
+        question: `Je kent Schotland onder meer van de "Whisky", de "Haggis" en "Loch Ness", maar wat zoeken we NOG over Schotland en haar cultuur?`,
+        answers: [
+          "Edinburgh",
+          "Glasgow",
+          "Kilt",
+          "Doedelzak",
+          "De Highlands",
+          "William Wallace",
+        ],
       },
     ],
     icon: "trophy",

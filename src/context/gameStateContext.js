@@ -44,6 +44,12 @@ export const gameStateReducer = (state, action) => {
         ...state,
         players: removePoint(state, action),
       };
+
+    case "REMOVE_POINT_FINALIST":
+      return {
+        ...state,
+        finalists: removePointFinalist(state, action),
+      };
     case "GO_TO_ROUNDS":
       return {
         ...state,
@@ -103,4 +109,23 @@ const getFinalists = (state) => {
   return x
     .slice(0, 2)
     .map((player) => ({ ...player, score: player.score * 10 }));
+};
+
+const countDown = (state, action) => {
+  return state.finalists.map((player) =>
+    player.name === action.payload
+      ? { ...player, score: player.score - 1 }
+      : player
+  );
+};
+
+const removePointFinalist = (state, action) => {
+  return state.finalists.map((player) => {
+    return player.name === action.payload
+      ? {
+          ...player,
+          score: player.score === 0 ? 0 : player.score - 1,
+        }
+      : player;
+  });
 };
