@@ -103,6 +103,7 @@ const Questions = () => {
           </button>
           <button
             onClick={() => {
+              if (!showQ) return setShowQ(true);
               if (active) {
                 stopJingle();
                 setSecondsLeft(30);
@@ -116,7 +117,9 @@ const Questions = () => {
             {active ? (
               secondsLeft
             ) : (
-              <span className="material-symbols-outlined text-6xl">timer</span>
+              <span className="material-symbols-outlined text-6xl">
+                {showQ ? "timer" : "visibility"}
+              </span>
             )}
           </button>
         </>
