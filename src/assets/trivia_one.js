@@ -326,6 +326,17 @@ export default {
         ],
       },
       {
+        question: `Deze dag ging de geschiedenis in als een van de belangrijkste maar ook een van de meest bloederige uit de Tweede Wereldoorlog. Wat kan je me vertellen over de dag die we kennen als "D-Day"?`,
+        answers: [
+          "Landing / Invasie",
+          "Operation Overlord",
+          "Geallieerde",
+          "Normandië",
+          "6 juni 1944",
+          "Omaha Beach",
+        ],
+      },
+      {
         question:
           "Wat kan je allemaal vertellen over zanger en tieneridool Justin Bieber?",
         answers: [
@@ -346,6 +357,16 @@ export default {
           "Doedelzak",
           "De Highlands",
           "William Wallace",
+        ],
+      },
+      {
+        question: `Wat weet je allemaal over de "Kristallnacht"?`,
+        answers: [
+          "Nacht van het gebroken glas",
+          "1938",
+          "Joden",
+          "Nazi's",
+          "Joseph Goebbels",
         ],
       },
     ],
