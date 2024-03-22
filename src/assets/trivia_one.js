@@ -1,5 +1,5 @@
 export default {
-  name: "",
+  name: "EazyPeazy",
   rounds: [
     {
       theme: "algemene kennis",
@@ -298,4 +298,13 @@ export default {
       ],
     },
   ],
+  final: {
+    questions: [
+      {
+        question: "",
+        answers: [],
+      },
+    ],
+    icon: "trophy",
+  },
 };

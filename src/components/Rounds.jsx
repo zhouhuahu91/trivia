@@ -32,11 +32,22 @@ const Rounds = () => {
               className="border py-4 px-6 min-w-32 rounded-md shadow-lg flex flex-col items-center justify-center gap-2"
               key={round.theme}
             >
-              <div className="material-symbols-outlined">{round.icon}</div>
-              <div className="capitalize">{round.theme}</div>
+              <span className="material-symbols-outlined">{round.icon}</span>
+              <span className="capitalize">{round.theme}</span>
             </button>
           );
         })}
+        <button
+          onClick={() => {
+            dispatch({ type: "GO_TO_FINALS" });
+          }}
+          className="border py-4 px-6 min-w-32 rounded-md shadow-lg flex flex-col items-center justify-center gap-2"
+        >
+          <span className="material-symbols-outlined">
+            {gameState.trivia.final.icon}
+          </span>
+          <span>Finale</span>
+        </button>
       </div>
     </div>
   );

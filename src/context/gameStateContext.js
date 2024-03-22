@@ -17,6 +17,7 @@ export const initialGameState = {
   trivia: trivia,
   phase: "lobby",
   questions: [],
+  finalists: [],
 };
 
 export const gameStateReducer = (state, action) => {
@@ -53,11 +54,21 @@ export const gameStateReducer = (state, action) => {
         ...state,
         phase: "lobby",
       };
+    case "GO_TO_FINALS":
+      return {
+        ...state,
+        phase: "finals",
+      };
     case "SET_QUESTIONS":
       return {
         ...state,
         phase: "questions",
         questions: action.payload,
+      };
+    case "GET_FINALISTS":
+      return {
+        ...state,
+        finalists: getFinalists(state),
       };
     default:
       return state;
@@ -84,4 +95,12 @@ const removePoint = (state, action) => {
         }
       : player;
   });
+};
+
+const getFinalists = (state) => {
+  const x = [...state.players];
+  x.sort((a, b) => b.score - a.score);
+  return x
+    .slice(0, 2)
+    .map((player) => ({ ...player, score: player.score * 10 }));
 };

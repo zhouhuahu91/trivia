@@ -8,7 +8,11 @@ const useGameStateProvider = () => {
     const storedGameState = localStorage.getItem("storedGameState");
     // If there is no gamestate we just return initial state
     return storedGameState
-      ? { ...initialGameState, players: JSON.parse(storedGameState).players }
+      ? {
+          ...initialGameState,
+          players: JSON.parse(storedGameState).players,
+          finalists: JSON.parse(storedGameState).finalists,
+        }
       : initialGameState;
   };
 
