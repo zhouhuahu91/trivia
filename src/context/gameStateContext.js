@@ -51,7 +51,8 @@ export const gameStateReducer = (state, action) => {
         ...state,
         finalistOne: {
           ...state.finalistOne,
-          score: state.finalistOne.score - 1,
+          score:
+            state.finalistOne.score === 0 ? 0 : state.finalistOne.score - 1,
         },
       };
     case "REMOVE_POINT_FINALIST_TWO":
@@ -60,7 +61,8 @@ export const gameStateReducer = (state, action) => {
         ...state,
         finalistTwo: {
           ...state.finalistOne,
-          score: state.finalistTwo.score - 1,
+          score:
+            state.finalistTwo.score === 0 ? 0 : state.finalistTwo.score - 1,
         },
       };
     case "GO_TO_ROUNDS":

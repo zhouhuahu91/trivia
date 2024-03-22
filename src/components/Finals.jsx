@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useGameState } from "../context/gameStateContext";
 
 const Finals = () => {
@@ -17,12 +17,57 @@ const Finals = () => {
   const answeredAll =
     answers.length === final.questions[currentQ].answers.length;
 
+  const clockAudio = useRef(new Audio("/clock.mp3"));
+  const tensionAudio = useRef(new Audio("/tension.mp3"));
+  const correctAudio = useRef(new Audio("/correct.mp3"));
+  const winnerAudio = useRef(new Audio("/winner.mp3"));
+
+  const startAudio = () => {
+    if (clockAudio.current) {
+      clockAudio.current.loop = true;
+      clockAudio.current.play();
+    }
+    if (tensionAudio.current) {
+      tensionAudio.current.loop = true;
+      tensionAudio.current.volume = 0.2;
+      tensionAudio.current.play();
+    }
+  };
+
+  const stopAudio = () => {
+    if (clockAudio.current) {
+      clockAudio.current.pause();
+      clockAudio.current.currentTime = 0; // Reset the audio to the start
+    }
+    if (tensionAudio.current) {
+      tensionAudio.current.pause();
+      tensionAudio.current.currentTime = 0; // Reset the audio to the start
+    }
+  };
+
   const reset = () => {
     setTurn(false);
     setShowQ(false);
     setAnswers([]);
     setBothHadATurn(false);
   };
+
+  useEffect(() => {
+    if (turn !== false) {
+      startAudio();
+    } else {
+      stopAudio();
+    }
+  }, [turn]);
+
+  useEffect(() => {
+    if (finalistOne?.score === 0 || finalistTwo?.score === 0) {
+      if (winnerAudio.current) {
+        winnerAudio.current.loop = true;
+        winnerAudio.current.play();
+      }
+    }
+  }, [finalistOne, finalistTwo]);
 
   useEffect(() => {
     if (finalistOne === null || finalistTwo === null) {
@@ -138,6 +183,10 @@ const Finals = () => {
               onClick={() => {
                 if (answers.includes(answer)) return;
                 setAnswers((prev) => [...prev, answer]);
+                if (correctAudio.current) {
+                  correctAudio.current.volume = 0.4;
+                  correctAudio.current.play();
+                }
                 for (let i = 0; i < 20; i++) {
                   setTimeout(() => {
                     if (turn === 0) {
