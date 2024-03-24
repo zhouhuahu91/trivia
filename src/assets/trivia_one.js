@@ -301,8 +301,30 @@ export default {
   final: {
     questions: [
       {
+        question:
+          "Ting was geboren op 22 maart 1991, maaar wat kan je nog meer vertellen over Ting?",
+        answers: [
+          "Hangzhou",
+          "Spanje",
+          "Zoë",
+          "Zhouhua Hu",
+          "Gelukshaar",
+          "Interior designer",
+        ],
+      },
+      {
         question: `Wat zijn de meest waardevolle type edelstenen ter wereld?`,
         answers: ["Diamant", "Robijn", "Smaragd", "Topaas", "Saffier"],
+      },
+      {
+        question: `Wat weet je allemaal over de "Kristallnacht"?`,
+        answers: [
+          "Nacht van het gebroken glas",
+          "1938",
+          "Joden",
+          "Nazi's",
+          "Joseph Goebbels",
+        ],
       },
       {
         question: `Welke fastfoodketens hebben wereldwijd het meeste restaurants?`,
@@ -359,14 +381,16 @@ export default {
           "William Wallace",
         ],
       },
+
       {
-        question: `Wat weet je allemaal over de "Kristallnacht"?`,
+        question: "Wat kan je me vertellen over de eerste landing op de maan?",
         answers: [
-          "Nacht van het gebroken glas",
-          "1938",
-          "Joden",
-          "Nazi's",
-          "Joseph Goebbels",
+          "Apollo 11",
+          "NASA",
+          "1969",
+          "One small step for man, one giant leap for mankind",
+          "Neil Armstrong",
+          "Buzz Aldrin",
         ],
       },
     ],
