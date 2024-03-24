@@ -306,7 +306,7 @@ export default {
         answers: [
           "Hangzhou",
           "Spanje",
-          "Zoë",
+          "Zoë Hu",
           "Zhouhua Hu",
           "Gelukshaar",
           "Interior designer",
@@ -335,6 +335,17 @@ export default {
           "Burger King",
           "Domino's",
           "Pizza Hut",
+        ],
+      },
+      {
+        question: `Je kent Schotland onder meer van de "Whisky", de "Edinburgh" en "Loch Ness", maar wat zoeken we NOG over Schotland en haar cultuur?`,
+        answers: [
+          "Haggis",
+          "Glasgow",
+          "Kilt",
+          "Doedelzak",
+          "De Highlands",
+          "William Wallace",
         ],
       },
       {
@@ -370,18 +381,6 @@ export default {
           "Ziekte van Lyme",
         ],
       },
-      {
-        question: `Je kent Schotland onder meer van de "Whisky", de "Haggis" en "Loch Ness", maar wat zoeken we NOG over Schotland en haar cultuur?`,
-        answers: [
-          "Edinburgh",
-          "Glasgow",
-          "Kilt",
-          "Doedelzak",
-          "De Highlands",
-          "William Wallace",
-        ],
-      },
-
       {
         question: "Wat kan je me vertellen over de eerste landing op de maan?",
         answers: [
