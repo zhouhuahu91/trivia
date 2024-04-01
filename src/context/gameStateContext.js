@@ -58,9 +58,8 @@ export const gameStateReducer = (state, action) => {
     case "REMOVE_POINT_FINALIST_TWO":
       return {
         ...state,
-        ...state,
         finalistTwo: {
-          ...state.finalistOne,
+          ...state.finalistTwo,
           score:
             state.finalistTwo.score === 0 ? 0 : state.finalistTwo.score - 1,
         },
