@@ -26,7 +26,7 @@ const AddTriviaModal = ({ isOpen, setIsOpen, trivias }) => {
 
     const trivia = {
       name: input,
-      rounds: [{}],
+      rounds: [],
       finale: {},
     };
     await addDoc(collection(db, "trivias"), trivia);
