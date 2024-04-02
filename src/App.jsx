@@ -8,6 +8,7 @@ import Players from "./components/Players";
 import Rounds from "./components/Rounds";
 import Questions from "./components/Qeustions";
 import Finals from "./components/Finals";
+import Lobby from "./components/Lobby";
 
 const App = () => {
   const {
@@ -16,7 +17,7 @@ const App = () => {
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center gap-32 mt-10">
-      {phase === "lobby" && <SelectTrivia />}
+      {phase === "lobby" && <Lobby />}
       {phase === "rounds" && <Rounds />}
       {/* {phase !== "questions" && phase !== "finals" && <Players />} */}
       {phase === "questions" && <Questions />}
