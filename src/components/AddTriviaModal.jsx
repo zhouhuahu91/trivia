@@ -2,10 +2,13 @@ import { useState } from "react";
 import Modal from "./Modal";
 import { db } from "../firebase/config";
 import { addDoc, collection } from "firebase/firestore";
+import ShortUniqueId from "short-unique-id";
 
 const AddTriviaModal = ({ isOpen, setIsOpen, trivias }) => {
   const [errors, setErrors] = useState("");
   const [input, setInput] = useState("");
+
+  const { randomUUID } = new ShortUniqueId({ length: 10 });
 
   const submit = async () => {
     // We sanitize the input by making it lowercase and removing the white spaces.
@@ -26,8 +29,28 @@ const AddTriviaModal = ({ isOpen, setIsOpen, trivias }) => {
 
     const trivia = {
       name: input,
-      rounds: [],
-      finale: {},
+      rounds: [
+        {
+          id: randomUUID(),
+          theme: "",
+          questions: [
+            {
+              id: randomUUID(),
+              question: "",
+              answer: "",
+            },
+          ],
+        },
+      ],
+      finale: {
+        questions: [
+          {
+            id: randomUUID(),
+            question: "",
+            answers: [""],
+          },
+        ],
+      },
     };
     await addDoc(collection(db, "trivias"), trivia);
 

@@ -10,3 +10,7 @@
 .input {
   @apply appearance-none my-0.5 border rounded-md w-full focus:outline-none bg-neutral-100 shadow-inner py-2 px-3 placeholder-gray-500;
 }
+
+.naked-input {
+  @apply appearance-none focus:outline-none placeholder-gray-400 bg-inherit;
+}
