@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useGameState } from "../context/gameStateContext";
 import { AnimatePresence, motion } from "framer-motion";
 // Component imports
@@ -11,6 +11,14 @@ const Players = () => {
     gameState: { players },
     dispatch,
   } = useGameState();
+
+  const audioRef = useRef(new Audio("/points.mp3"));
+
+  const startAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
 
   return (
     <>
@@ -88,9 +96,10 @@ const Players = () => {
                     {player.score}
                   </span>
                   <button
-                    onClick={() =>
-                      dispatch({ type: "ADD_POINT", payload: player.name })
-                    }
+                    onClick={() => {
+                      dispatch({ type: "ADD_POINT", payload: player.name });
+                      startAudio();
+                    }}
                     className="material-symbols-outlined text-main"
                   >
                     add_circle
