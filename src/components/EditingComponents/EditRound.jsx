@@ -68,7 +68,7 @@ const EditRound = ({ round, trivia }) => {
             rounds: array,
           });
         }}
-        className="naked-input text-main text-xl font-bold mb-2"
+        className="naked-input text-main text-xl font-bold mb-2 capitalize"
       />
       <div>
         {round.questions.map((q, idx) => {

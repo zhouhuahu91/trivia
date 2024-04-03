@@ -80,19 +80,17 @@ const EditQuestion = ({ q, idx, round, trivia }) => {
       </div>
       <textarea
         placeholder="vraag?"
-        className="naked-input w-full"
+        className="naked-input w-full font-medium"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         onBlur={() => saveQuestion()}
-        rows="1"
       />
       <textarea
         placeholder="antwoord"
-        className="naked-input w-full"
+        className="naked-input w-full italic"
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
         onBlur={() => saveAnswer()}
-        rows="1"
       />
     </div>
   );

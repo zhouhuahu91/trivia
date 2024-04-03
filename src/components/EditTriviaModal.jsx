@@ -58,15 +58,12 @@ const EditTriviaModal = ({ trivia }) => {
         edit
       </button>
       <Modal
-        className="bg-white rounded-md max-w-screen-md w-full overflow-hidden"
+        className="bg-white w-full max-h-screen max-w-3xl relative flex flex-col overflow-scroll"
         isOpen={isOpen}
         close={() => closeModal()}
       >
-        <div
-          style={{ maxHeight: "calc(100vh - 20px)" }}
-          className="overflow-auto"
-        >
-          <div className="border-b p-4 flex items-center justify-between fixed top-0 w-full bg-white">
+        <div>
+          <div className="border-b p-4 flex items-center justify-between w-full">
             <div className="text-3xl font-bold text-main italic">
               {trivia.name}
             </div>
@@ -77,7 +74,7 @@ const EditTriviaModal = ({ trivia }) => {
               close
             </button>
           </div>
-          <div className="bg-neutral-50 mt-16">
+          <div className="bg-neutral-50 py-8">
             {trivia.rounds.map((round) => {
               return <EditRound key={round.id} round={round} trivia={trivia} />;
             })}

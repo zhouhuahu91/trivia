@@ -10,7 +10,7 @@ const Modal = ({ isOpen, children, close, className }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => close()}
-            className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
+            className="bg-slate-900/20 backdrop-blur fixed inset-0 w-full h-full flex justify-center items-center"
           >
             <motion.div
               initial={{ scale: 0, rotate: "12.5deg" }}

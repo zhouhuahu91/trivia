@@ -61,17 +61,16 @@ const EditFinaleQuestion = ({ trivia, q, idx }) => {
       </div>
       <textarea
         placeholder="vraag?"
-        className="naked-input w-full"
+        className="naked-input w-full font-medium"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         onBlur={() => saveQeustion()}
-        rows="1"
       />
       <div className="flex gap-2 flex-col">
         <input
           placeholder="Scheid de antwoorden met een komma."
           value={answers}
-          className="naked-input"
+          className="naked-input italic"
           onChange={(e) => setAnswers(e.target.value)}
           onBlur={() => saveAnswers()}
         />
