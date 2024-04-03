@@ -58,12 +58,12 @@ const EditTriviaModal = ({ trivia }) => {
         edit
       </button>
       <Modal
-        className="bg-white rounded-md max-w-xl w-full overflow-hidden"
+        className="bg-white rounded-md max-w-screen-md w-full overflow-hidden"
         isOpen={isOpen}
         close={() => closeModal()}
       >
         <div
-          style={{ maxHeight: "calc(100vh - 265px)" }}
+          style={{ maxHeight: "calc(100vh - 20px)" }}
           className="overflow-auto"
         >
           <div className="border-b p-4 flex items-center justify-between fixed top-0 w-full bg-white">
@@ -81,6 +81,13 @@ const EditTriviaModal = ({ trivia }) => {
             {trivia.rounds.map((round) => {
               return <EditRound key={round.id} round={round} trivia={trivia} />;
             })}
+            <button
+              onClick={() => addNewRound()}
+              className="rounded mx-4 py-1 px-4 border text-xs bg-white flex items-center justify-center capitalize"
+            >
+              <span className="material-symbols-outlined text-base">add</span>
+              ronde
+            </button>
             <div className="p-4">
               <h1 className="text-main text-xl font-bold mb-2">Finale</h1>
               {trivia.finale.questions.map((q, idx) => {
@@ -101,14 +108,6 @@ const EditTriviaModal = ({ trivia }) => {
                 vraag
               </button>
             </div>
-          </div>
-          <div className="p-3 border-t flex justify-end">
-            <button
-              className="rounded p-2 border flex items-center justify-center w-full bg-main text-white capitalize text-sm"
-              onClick={() => addNewRound()}
-            >
-              ronde toevoegen
-            </button>
           </div>
         </div>
       </Modal>
