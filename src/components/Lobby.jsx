@@ -21,7 +21,7 @@ const DeleteModal = ({ trivia }) => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="material-symbols-outlined text-gray-100 hover:text-red-400"
+        className="material-symbols-outlined text-gray-100 hover:text-red-400 mx-2"
       >
         delete
       </button>

@@ -58,11 +58,11 @@ const EditTriviaModal = ({ trivia }) => {
         edit
       </button>
       <Modal
-        className="bg-white fixed sm:static sm:max-w-lg inset-0 md:block w-full h-full flex flex-col overflow-scroll"
+        className="bg-white fixed sm:static sm:max-w-xl inset-0 w-full flex max-h-screen flex-col overflow-scroll"
         isOpen={isOpen}
         close={() => closeModal()}
       >
-        <div>
+        <div className="">
           <div className="border-b p-4 flex items-center justify-between w-full">
             <div className="text-3xl font-bold text-main italic">
               {trivia.name}

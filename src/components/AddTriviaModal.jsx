@@ -66,7 +66,7 @@ const AddTriviaModal = ({ isOpen, setIsOpen, trivias }) => {
 
   return (
     <Modal
-      className="bg-white rounded-md max-w-md w-full"
+      className="bg-white rounded-md max-w-md w-full mx-2"
       isOpen={isOpen}
       close={() => closeModal()}
     >
