@@ -47,7 +47,7 @@ const Rounds = () => {
         >
           {gameState.trivia.finale.icon && (
             <span className="material-symbols-outlined">
-              {gameState.trivia.final.icon}
+              {gameState.trivia.finale.icon}
             </span>
           )}
           <span>Finale</span>
