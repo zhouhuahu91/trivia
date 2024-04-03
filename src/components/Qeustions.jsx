@@ -84,7 +84,7 @@ const Questions = () => {
         </button>
       </div>
       <Players />
-      {questions.length > 9 && (
+      {questions.length > 0 && (
         <>
           <button
             onClick={() => setShowQ((prev) => !prev)}

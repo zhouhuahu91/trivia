@@ -32,7 +32,9 @@ const Rounds = () => {
               className="border py-4 px-6 min-w-32 rounded-md shadow-lg flex flex-col items-center justify-center gap-2"
               key={round.theme}
             >
-              <span className="material-symbols-outlined">{round.icon}</span>
+              {round.icon && (
+                <span className="material-symbols-outlined">{round.icon}</span>
+              )}
               <span className="capitalize">{round.theme}</span>
             </button>
           );
@@ -43,9 +45,11 @@ const Rounds = () => {
           }}
           className="border py-4 px-6 min-w-32 rounded-md shadow-lg flex flex-col items-center justify-center gap-2"
         >
-          <span className="material-symbols-outlined">
-            {gameState.trivia.final.icon}
-          </span>
+          {gameState.trivia.finale.icon && (
+            <span className="material-symbols-outlined">
+              {gameState.trivia.final.icon}
+            </span>
+          )}
           <span>Finale</span>
         </button>
       </div>

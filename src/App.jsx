@@ -2,7 +2,6 @@
 // import { useState } from "react";
 import { useGameState } from "./context/gameStateContext";
 // Component imports
-import SelectTrivia from "./components/SelectTrivia";
 import AddPlayer from "./components/AddPlayer";
 import Players from "./components/Players";
 import Rounds from "./components/Rounds";
@@ -18,8 +17,11 @@ const App = () => {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center gap-32 mt-10">
       {phase === "lobby" && <Lobby />}
+      {phase === "players" && <AddPlayer />}
       {phase === "rounds" && <Rounds />}
-      {/* {phase !== "questions" && phase !== "finals" && <Players />} */}
+      {phase !== "questions" && phase !== "finals" && phase !== "lobby" && (
+        <Players />
+      )}
       {phase === "questions" && <Questions />}
       {phase === "finals" && <Finals />}
     </div>

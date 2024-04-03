@@ -6,7 +6,7 @@ const Finals = () => {
   const {
     finalistOne,
     finalistTwo,
-    trivia: { final },
+    trivia: { finale },
   } = gameState;
   const [turn, setTurn] = useState(false);
   const [showQ, setShowQ] = useState(false);
@@ -15,7 +15,7 @@ const Finals = () => {
   const [bothHadATurn, setBothHadATurn] = useState(false);
 
   const answeredAll =
-    answers.length === final.questions[currentQ].answers.length;
+    answers.length === finale.questions[currentQ].answers.length;
 
   const clockAudio = useRef(new Audio("/clock.mp3"));
   const tensionAudio = useRef(new Audio("/tension.mp3"));
@@ -99,7 +99,7 @@ const Finals = () => {
     if (
       turn !== false &&
       // If all answers are shown we stop the time.
-      answers.length < final.questions[currentQ].answers.length &&
+      answers.length < finale.questions[currentQ].answers.length &&
       finalistOne.score > 0 &&
       finalistTwo.score > 0
     ) {
@@ -120,7 +120,7 @@ const Finals = () => {
     }
 
     return () => clearInterval(interval);
-  }, [turn, answers, final, currentQ, dispatch, finalistOne, finalistTwo]);
+  }, [turn, answers, finale, currentQ, dispatch, finalistOne, finalistTwo]);
 
   return (
     <div className="flex flex-col items-center justify-center gap-10">
@@ -188,10 +188,10 @@ const Finals = () => {
           !showQ && "blur-lg"
         }`}
       >
-        {final.questions[currentQ].question}
+        {finale.questions[currentQ].question}
       </button>
       <div className="flex gap-20 mt-10">
-        {final.questions[currentQ].answers.map((answer) => {
+        {finale.questions[currentQ].answers.map((answer, idx) => {
           return (
             <button
               disabled={
@@ -219,7 +219,7 @@ const Finals = () => {
                 }
               }}
               className={`text-2xl ${!answers.includes(answer) && "blur"}`}
-              key={answer}
+              key={idx}
             >
               {answer}
             </button>
@@ -272,7 +272,7 @@ const Finals = () => {
         {(bothHadATurn || answeredAll) && turn === false && (
           <button
             onClick={() => {
-              if (currentQ + 1 === final.questions.length) {
+              if (currentQ + 1 === finale.questions.length) {
                 reset();
                 return setCurrentQ(0);
               }

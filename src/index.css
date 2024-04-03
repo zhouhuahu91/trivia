@@ -12,5 +12,5 @@
 }
 
 .naked-input {
-  @apply appearance-none focus:outline-none placeholder-gray-400 bg-inherit;
+  @apply appearance-none focus:outline-none placeholder-gray-400 bg-inherit focus:border rounded p-2;
 }

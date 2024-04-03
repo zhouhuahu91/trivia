@@ -91,6 +91,12 @@ export const gameStateReducer = (state, action) => {
         finalistOne: getFinalist(state, 0),
         finalistTwo: getFinalist(state, 1),
       };
+    case "SET_TRIVIA":
+      return {
+        ...state,
+        trivia: action.payload,
+        phase: "players",
+      };
     default:
       return state;
   }

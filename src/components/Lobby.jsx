@@ -9,6 +9,8 @@ import {
   doc,
 } from "firebase/firestore";
 
+import { useGameState } from "../context/gameStateContext";
+
 import AddTriviaModal from "./AddTriviaModal";
 import EditTriviaModal from "./EditTriviaModal";
 import Modal from "./Modal";
@@ -68,6 +70,8 @@ const Lobby = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [trivias, setTrivias] = useState([]);
 
+  const { dispatch } = useGameState();
+
   // Fetches all the trivias on firestore.
   useEffect(() => {
     const q = query(collection(db, "trivias"));
@@ -109,7 +113,7 @@ const Lobby = () => {
                 </div>
                 <button
                   onClick={() => {
-                    // to-do: start a new game on firestore.
+                    dispatch({ type: "SET_TRIVIA", payload: trivia });
                   }}
                   className="bg-main px-4 rounded text-white material-symbols-outlined w-16"
                 >
